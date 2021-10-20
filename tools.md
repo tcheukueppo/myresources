@@ -16,4 +16,4 @@ gs, pdf compressor
 cups, gutenprint - this are printers
 RTSP, HLS - for live streaming
 GoTTy/ttyd, live streaming a terminal
-
+searx - hackable meta search engine
