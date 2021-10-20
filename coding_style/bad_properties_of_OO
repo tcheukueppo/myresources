@@ -1,0 +1,296 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+    <title>Bad Engineering Properties of Object-Oriented Language</title>
+
+    <link rel="stylesheet" href="/pub/style/style.css" type="text/css" media="screen, handheld" title="default">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" href="/_werc/pub/style.css" type="text/css" media="screen" title="default">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+
+
+
+    
+
+</head>
+<body>
+
+<header>
+    <nav>
+    <div class="left">
+      <a href="http://quotes.cat-v.org">quotes</a> |
+      <a href="http://doc.cat-v.org">docs</a> |
+      <a href="http://repo.cat-v.org">repo</a> |
+      <a href="http://go-lang.cat-v.org">golang</a> |
+      <a href="http://sam.cat-v.org">sam</a> |
+      <a href="http://man.cat-v.org">man</a> |
+      <a href="http://acme.cat-v.org">acme</a> |
+      <a href="http://glenda.cat-v.org">Glenda</a> |
+      <a href="http://ninetimes.cat-v.org">9times</a> |
+      <a href="http://harmful.cat-v.org">harmful</a> |
+      <a href="http://9p.cat-v.org/">9P</a> |
+      <a href="http://cat-v.org">cat-v.org</a>
+    </div>
+
+    <div class="right">
+
+      <span class="doNotDisplay">Related sites:</span>
+      | <a href="http://cat-v.org/update_log">site updates</a>
+      | <a href="/sitemap">site map</a> |
+
+    </div>
+
+    </nav>
+    <h1><a href="/">/sys/doc/ <span id="headerSubTitle">Documentation archive</span></a></h1>
+</header>
+
+    <nav id="side-bar">
+        <div>
+<p class="sideBarTitle">Sections:</p>
+<ul>
+<li><a href="/bell_labs/">&rsaquo; bell labs/</a></li>
+<li><a href="/economics/">&rsaquo; economics/</a></li>
+<li><a href="/feynman/">&rsaquo; feynman/</a></li>
+<li><a href="/henry_spencer/">&rsaquo; henry spencer/</a></li>
+<li><a href="/inferno/">&rsaquo; inferno/</a></li>
+<li><a href="/plan_9/">&rsaquo; plan 9/</a></li>
+<li><a href="/political_science/">&rsaquo; political science/</a></li>
+<li><a href="/programming/" class="thisPage">&raquo;<i> programming/</i></a></li>
+<li><ul>
+<li><a href="/programming/bad_properties_of_OO" class="thisPage">&raquo;<i> bad properties of OO</i></a></li>
+<li><a href="/programming/go/">&rsaquo; go/</a></li>
+<li><a href="/programming/worse_is_better">&rsaquo; worse is better</a></li>
+</ul></li>
+<li><a href="/unix/">&rsaquo; unix/</a></li>
+<li><a href="/xml/">&rsaquo; xml/</a></li>
+</ul>
+        </div>
+    </nav>
+
+<article>
+
+
+<DIV ALIGN=CENTER><H2>Bad Engineering Properties<BR> of Object-Oriented Languages</H2></DIV>
+
+<DIV ALIGN=CENTER><H3><a href="http://www.amazon.com/gp/redirect.html?ie=UTF8&location=http%3A%2F%2Fwww.amazon.com%2Fexec%2Fobidos%2Fsearch-handle-url%3F%5Fencoding%3DUTF8%26search-type%3Dss%26index%3Dbooks%26field-author%3DLuca%2520Cardelli&tag=catv-20&linkCode=ur2&camp=1789&creative=9325">Luca Cardelli</a></H3></DIV>
+
+<DIV ALIGN=CENTER><H4>Digital Equipment Corporation, Systems Research Center <BR>
+</H4></DIV>
+
+<BLOCKQUOTE>
+  <P><B>Abstract.</B> Object-oriented languages dominate procedural languages
+  in certain software-engineering categories, but not in others. Further
+  progress may involve adapting and reintroducing principles that are already
+  well understood and widely exploited in procedural languages.</P>
+</BLOCKQUOTE>
+
+<P>The object-oriented paradigm emerged in the 60's, roughly during the
+time that important notions such as data abstraction, polymorphism, and
+modularization were applied to the procedural paradigm. Eventually, object-oriented
+languages also acquired notions of data abstraction, polymorphism, and modularization,
+but not quite in the same way, and not quite as effectively.</P>
+
+<P>In the last decade, object-oriented languages have been widely adopted
+as engineering tools because of their superiority with respect to software
+extensibility, which is a critical engineering property <A HREF="#anchor234223">[4]</A>.
+A large and growing fraction of software engineering is now carried out
+in object-oriented languages, taking over the domain traditionally covered
+by procedural languages. However, object-oriented languages have not incorporated
+all the engineering insights that have been successfully deployed in procedural
+languages. For example, they have emphasized code reuse at the expense of
+modularization, and dynamic inspection at the expense of static detection.
+Therefore, opportunities remain for applying important ideas that hopefully
+will result in even stronger engineering advantages for object-oriented
+languages.</P>
+
+<P>I will begin by considering some obvious engineering metrics. For comparison
+purposes, I will first recall how advances in language design have resulted
+in the past in engineering improvements, according to these metrics. Next,
+I will review how object-oriented languages have yet to show similar improvements
+in some of these areas. Finally, I will discuss what remains to be done
+to integrate certain good engineering principles into object-oriented languages.</P>
+
+<P>Consider the following (informal) metrics:</P>
+
+<UL>
+  <LI><B>Economy of execution</B>. How fast does a program run?
+  <LI><B>Economy of compilation</B>. How long does it take to go from sources
+  to executables?
+  <LI><B>Economy of small-scale development</B>. How hard must an individual
+  programmer work?
+  <LI><B>Economy of large-scale development</B>. How hard must a team of
+  programmers work?
+  <LI><B>Economy of language features</B>. How hard is it to learn or use
+  a programming language?
+</UL>
+
+<P>Let us consider first procedural languages. Over the course of many years,
+these languages acquired features that (more often than not) resulted in
+considerable improvements in engineering. This is of course not an accident:
+most language features were directly inspired or corroborated by engineering
+considerations. These engineering-friendly features include the notions
+of static typing, data abstraction, modularization, and parameterization,
+which resulted in the following improvements:</P>
+
+<UL>
+  <LI><B>Economy of execution</B>. Type information was first introduced
+  in programming to improve code generation and run-time efficiency for numerical
+  computations, for example in FORTRAN. In ML, accurate type information
+  eliminates the need for nil-checking on pointer dereferencing. In general,
+  accurate type information at compile time leads to the application of the
+  appropriate operations at run-time without the need of expensive tests.
+  <LI><B>Economy of compilation</B>. Type information can be organized into
+  interfaces for program modules, for example as in Modula-2 and Ada. Modules
+  can then be compiled independently of each other, with each module depending
+  only on the interfaces of the others. Compilation of large systems is made
+  more efficient because, at least when interfaces are stable, changes to
+  a module do not cause other modules to be recompiled. The messy aspects
+  of system integration are thus eliminated.
+  <LI><B>Economy of small-scale development</B>. When a type system is well
+  designed, typechecking can capture a large fraction of routine programming
+  errors, eliminating lengthy testing and debugging sessions. The errors
+  that do occur are easier to debug, simply because large classes of other
+  errors have been ruled out. Moreover, experienced programmers adopt a coding
+  style that causes some logical errors to show up as typechecking errors:
+  they use the typechecker as a development tool. (For example, by changing
+  the name of a type when its invariants change even though the type structure
+  remains the same, so as to get error reports on all its old uses.)
+  <LI><B>Economy of large-scale development</B>. Data abstraction and modularization
+  have methodological advantages for code development. Large teams of programmers
+  can negotiate the interfaces to be implemented, and then proceed separately
+  to implement the corresponding pieces of code. Dependencies between pieces
+  of code are minimized, and code can be locally rearranged without fear
+  of global effects. Polymorphism is important for reusing code modularly.
+  <LI><B>Economy of language features</B>. Some well-designed constructions
+  can be naturally composed in orthogonal ways. For example, in Pascal an
+  array of arrays models two-dimensional arrays; in ML, a procedure with
+  a single argument that is a tuple of n parameters models a procedure of
+  n arguments. Orthogonality of language features reduces the complexity
+  of programming languages. The learning curve for programmers is thus reduced,
+  and the re-learning effort that is constantly necessary in using complex
+  languages is minimized as well.
+</UL>
+
+<P>Let us now consider object-oriented languages, and see how they compare
+on these metrics.</P>
+
+<UL>
+  <LI><B>Economy of execution</B>. Object-oriented style is intrinsically
+  less efficient that procedural style. In pure object-oriented style, every
+  routine is supposed to be a (virtual) method. This introduces additional
+  indirections through method tables and prevents optimizations such as inlining.
+  The traditional solution to this problem (analyzing and compiling whole
+  programs) violates modularity and is not applicable to libraries.
+  <LI><B>Economy of compilation</B>. Often there is no distinction between
+  the code of a class and the interface of a class. Some object-oriented
+  languages are not sufficiently modular and require recompilation of superclasses
+  when compiling subclasses. Therefore, the time spent in compilation may
+  grow disproportionally with the size of the system.
+  <LI><B>Economy of small-scale development</B>. This is a big win of object-orientation:
+  individual programmers can take good advantage of class libraries and frameworks,
+  drastically reducing their work load. When the level of ambition grows,
+  however, programmers must be able to understand the details of those class
+  libraries, and this turns out to be more difficult than understanding module
+  libraries (see also the next point). The type systems of most object-oriented
+  languages are not expressive enough; programmers must often resort to dynamic
+  checking or to unsafe features, damaging the robustness of their programs.
+  <LI><B>Economy of large-scale development</B>. Teams of programmers are
+  often involved in developing class libraries and specializing existing
+  class libraries. Although reuse is a big win of object-oriented languages,
+  it is also the case that these languages have extremely poor modularity
+  properties with respect to class extension and modification. For example,
+  it is easy to override a method that should not be overridden, or to reimplement
+  a class in a way that causes problems in subclasses. Other large-scale
+  development problems include the confusion between classes and object types,
+  which limits the construction of abstractions, and the fact that subtype
+  polymorphism is not good enough for expressing container classes.
+  <LI><B>Economy of language features</B>. Smalltalk was originally intended
+  as a language that would be easy to learn <A HREF="#anchor233494">[2]</A>.
+  C++ is based on a fairly simple model, inherited from Simula, but is otherwise
+  daunting in the complexity of its many features <A HREF="#anchor234930">[6]</A>.
+  Somewhere along the line something went wrong; what started as economical
+  and uniform (&quot;everything is an object&quot;) ended up as a baroque
+  collection of class varieties. Java represents a healthy reaction to the
+  complexity trend, but is more complex than many people realize <A HREF=
+  "#anchor233944">[3]</A>.
+</UL>
+
+<P>These problems form obstacles to the further development of object-oriented
+software engineering, and in some situations are beginning to cause its
+outright rejection. Such problems can be solved either by a variety of ad
+hoc tools and methodologies, or by progress in language technology (both
+design and implementation). Here are some things that could or should be
+done in the various areas.</P>
+
+<UL>
+  <LI><B>Economy of execution</B>. Much can be done to improve the efficiency
+  of method invocation by clever program analysis, as well as by language
+  features (e.g. by &quot;final&quot; methods and classes); this is the topic
+  of a large and promising body of current work. We also need to design type
+  systems that can statically check many of the conditions that now require
+  dynamic subclass checks.
+  <LI><B>Economy of compilation</B>. We need to adopt languages and type
+  systems that allow the separate compilation of (sub)classes, without resorting
+  to recompilation of superclasses and without relying on &quot;private&quot;
+  information in interfaces.
+  <LI><B>Economy of small-scale development</B>. Improvements in type systems
+  for object-oriented languages will improve error detection and the expressiveness
+  of interfaces. Much promising work has been done already and needs to be
+  applied or further deployed <A HREF="#anchor232387">[1]</A> <A HREF="#anchor234657">[5]</A>.
+  <LI><B>Economy of large-scale development</B>. Major progress should be
+  achieved by formulating and enforcing inheritance interfaces: the contract
+  between a class and its subclasses (as opposed to the instantiation interface
+  which is essentially an object type). This recommendation requires the
+  development of adequate language support. Parametric polymorphism is beginning
+  to appear in many object-oriented languages, and its interactions with
+  object-oriented features need to be better understood. Subtyping and subclassing
+  must be separated. Similarly, classes and interfaces must be separated.
+  <LI><B>Economy of language features</B>. Prototype-based languages have
+  already tried to reduce the complexity of class-based languages by providing
+  simpler, more composable features. Even within class-based languages, we
+  now have a better understanding of how to achieve simplicity and orthogonality,
+  but much remains to be done. How can we design an object-oriented language
+  that is powerful and simple; one that allows powerful engineering but also
+  simple and reliable engineering?
+</UL>
+
+<P>In conclusion, object-oriented languages still have to learn some engineering
+lessons from procedural languages. In fairness, designers of object-oriented
+languages did not simply &quot;forget&quot; to include properties such as
+good type systems and good modularity: the issues are intrinsically more
+complex than in procedural languages. Therefore, we have to work harder
+to produce object-oriented language designs that entail good engineering
+properties. We have to work even harder to produce good language designs.</P>
+
+<H4>References</H4>
+
+<OL>
+  <LI><A NAME="anchor232387"></A>Dami, L., OO
+  Type Theory web page, 1996.
+  <LI><A NAME="anchor233494"></A>Goldberg, A. and D. Robson, Smalltalk-80.
+  The language and its implementation. Addison-Wesley. 1983.
+  <LI><A NAME="anchor233944"></A>Gosling, J., B. Joy, and G. Steele, The
+  Java language specification. Addison-Wesley. 1996.
+  <LI><A NAME="anchor234223"></A>Meyer, B., Object-oriented software construction.
+  Prentice Hall. 1988. (Second edition to appear in 1997.)
+  <LI><A NAME="anchor234657"></A>Odersky, M. and P. Wadler, Pizza into Java:
+  Translating theory in to practice. Proc. 24nd Annual ACM Symposium on Principles
+  of Programming Languages. 1997.
+  <LI><A NAME="anchor234930"></A>Stroustrup, B., The C++ Programming Language.
+  Second Edition. Addison-Wesley. 1991.<BR>
+  
+</OL>
+
+</article>
+
+<footer>
+<br class="doNotDisplay doNotPrint" />
+
+<div style="margin-right: auto;"><a href="http://werc.cat-v.org">Powered by werc</a></div>
+
+<div><form action="/_search/" method="POST"><input type="text" id="searchtext" name="q"> <input type="submit" value="Search"></form></div>
+</footer>
+</body></html>

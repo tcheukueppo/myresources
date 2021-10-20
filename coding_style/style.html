@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/mandoc.css" type="text/css" media="all">
+  <title>style(9) - OpenBSD manual pages</title>
+</head>
+<body>
+<section>
+<h1><a href="https://www.openbsd.org/">OpenBSD</a> manual page server</h1>
+</section>
+<form action="/" method="get" autocomplete="off" autocapitalize="none">
+  <fieldset>
+    <legend>Manual Page Search Parameters</legend>
+    <input type="search" name="query" value="style" size="40">
+    <button type="submit" name="apropos" value="0">man</button>
+    <button type="submit" name="apropos" value="1">apropos</button>
+    <br/>
+    <select name="sec">
+      <option value="0">All Sections</option>
+      <option value="1">1 - General Commands</option>
+      <option value="2">2 - System Calls</option>
+      <option value="3">3 - Library Functions</option>
+      <option value="3p">3p - Perl Library</option>
+      <option value="4">4 - Device Drivers</option>
+      <option value="5">5 - File Formats</option>
+      <option value="6">6 - Games</option>
+      <option value="7">7 - Miscellaneous Information</option>
+      <option value="8">8 - System Manager's Manual</option>
+      <option value="9">9 - Kernel Developer's Manual</option>
+    </select>
+    <select name="arch">
+      <option value="default" selected="selected">All Architectures</option>
+      <option>amd64</option>
+      <option>alpha</option>
+      <option>armv7</option>
+      <option>arm64</option>
+      <option>hppa</option>
+      <option>i386</option>
+      <option>landisk</option>
+      <option>loongson</option>
+      <option>luna88k</option>
+      <option>macppc</option>
+      <option>mips64</option>
+      <option>octeon</option>
+      <option>powerpc64</option>
+      <option>riscv64</option>
+      <option>sparc64</option>
+      <option>amiga</option>
+      <option>arc</option>
+      <option>armish</option>
+      <option>arm32</option>
+      <option>atari</option>
+      <option>aviion</option>
+      <option>beagle</option>
+      <option>cats</option>
+      <option>hppa64</option>
+      <option>hp300</option>
+      <option>ia64</option>
+      <option>mac68k</option>
+      <option>mvme68k</option>
+      <option>mvme88k</option>
+      <option>mvmeppc</option>
+      <option>palm</option>
+      <option>pc532</option>
+      <option>pegasos</option>
+      <option>pmax</option>
+      <option>powerpc</option>
+      <option>sgi</option>
+      <option>socppc</option>
+      <option>solbourne</option>
+      <option>sparc</option>
+      <option>sun3</option>
+      <option>vax</option>
+      <option>wgrisc</option>
+      <option>x68k</option>
+      <option>zaurus</option>
+    </select>
+    <select name="manpath">
+      <option selected="selected">OpenBSD-current</option>
+      <option>OpenBSD-6.9</option>
+      <option>OpenBSD-6.8</option>
+      <option>OpenBSD-6.7</option>
+      <option>OpenBSD-6.6</option>
+      <option>OpenBSD-6.5</option>
+      <option>OpenBSD-6.4</option>
+      <option>OpenBSD-6.3</option>
+      <option>OpenBSD-6.2</option>
+      <option>OpenBSD-6.1</option>
+      <option>OpenBSD-6.0</option>
+      <option>OpenBSD-5.9</option>
+      <option>OpenBSD-5.8</option>
+      <option>OpenBSD-5.7</option>
+      <option>OpenBSD-5.6</option>
+      <option>OpenBSD-5.5</option>
+      <option>OpenBSD-5.4</option>
+      <option>OpenBSD-5.3</option>
+      <option>OpenBSD-5.2</option>
+      <option>OpenBSD-5.1</option>
+      <option>OpenBSD-5.0</option>
+      <option>OpenBSD-4.9</option>
+      <option>OpenBSD-4.8</option>
+      <option>OpenBSD-4.7</option>
+      <option>OpenBSD-4.6</option>
+      <option>OpenBSD-4.5</option>
+      <option>OpenBSD-4.4</option>
+      <option>OpenBSD-4.3</option>
+      <option>OpenBSD-4.2</option>
+      <option>OpenBSD-4.1</option>
+      <option>OpenBSD-4.0</option>
+      <option>OpenBSD-3.9</option>
+      <option>OpenBSD-3.8</option>
+      <option>OpenBSD-3.7</option>
+      <option>OpenBSD-3.6</option>
+      <option>OpenBSD-3.5</option>
+      <option>OpenBSD-3.4</option>
+      <option>OpenBSD-3.3</option>
+      <option>OpenBSD-3.2</option>
+      <option>OpenBSD-3.1</option>
+      <option>OpenBSD-3.0</option>
+      <option>OpenBSD-2.9</option>
+      <option>OpenBSD-2.8</option>
+      <option>OpenBSD-2.7</option>
+      <option>OpenBSD-2.6</option>
+      <option>OpenBSD-2.5</option>
+      <option>OpenBSD-2.4</option>
+      <option>OpenBSD-2.3</option>
+      <option>OpenBSD-2.2</option>
+    </select>
+  </fieldset>
+</form>
+<hr>
+<table class="head">
+  <tr>
+    <td class="head-ltitle">STYLE(9)</td>
+    <td class="head-vol">Kernel Developer's Manual</td>
+    <td class="head-rtitle">STYLE(9)</td>
+  </tr>
+</table>
+<div class="manual-text">
+<section class="Sh">
+<h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
+<p class="Pp"><code class="Nm">style</code> &#x2014; <span class="Nd">Kernel
+    source file style guide (KNF)</span></p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
+<p class="Pp">This file specifies the preferred style for kernel source files in
+    the <span class="Ux">OpenBSD</span> source tree. It is also a guide for
+    preferred userspace code style. These guidelines should be followed for all
+    new code. In general, code can be considered &#x201C;new code&#x201D; when
+    it makes up about 50% or more of the file(s) involved. This is enough to
+    break precedents in the existing code and use the current style
+  guidelines.</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>/*
+ * Style guide for the OpenBSD KNF (Kernel Normal Form).
+ */
+
+/*
+ * VERY important single-line comments look like this.
+ */
+
+/* Most single-line comments look like this. */
+
+/*
+ * Multi-line comments look like this.  Make them real sentences.
+ * Fill them so they look like real paragraphs.
+ */</pre>
+</div>
+<p class="Pp">Kernel include files (i.e.,
+    <code class="In">&lt;<a class="In">sys/*.h</a>&gt;</code>) come first;
+    normally, you'll need
+    <code class="In">&lt;<a class="In">sys/types.h</a>&gt;</code> OR
+    <code class="In">&lt;<a class="In">sys/param.h</a>&gt;</code>, but not both!
+    <code class="In">&lt;<a class="In">sys/types.h</a>&gt;</code> includes
+    <code class="In">&lt;<a class="In">sys/cdefs.h</a>&gt;</code>, and it's okay
+    to depend on that.</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>#include &lt;sys/types.h&gt;	/* Non-local includes in brackets. */</pre>
+</div>
+<p class="Pp">If it's a network program, put the network include files next.</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>#include &lt;net/if.h&gt;
+#include &lt;net/if_dl.h&gt;
+#include &lt;net/route.h&gt;
+#include &lt;netinet/in.h&gt;</pre>
+</div>
+<p class="Pp">Then there's a blank line, followed by the
+    <span class="Pa">/usr/include</span> files. The
+    <span class="Pa">/usr/include</span> files, for the most part, should be
+    sorted.</p>
+<p class="Pp">Global pathnames are defined in
+    <span class="Pa">/usr/include/paths.h</span>. Pathnames local to the program
+    go in <span class="Pa">pathnames.h</span> in the local directory.</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>#include &lt;paths.h&gt;</pre>
+</div>
+<p class="Pp">Then there's a blank line, and the user include files.</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>#include &quot;pathnames.h&quot;	/* Local includes in double quotes. */</pre>
+</div>
+<p class="Pp">All non-static functions are prototyped somewhere.</p>
+<p class="Pp">Function prototypes for private functions (i.e., functions not
+    used elsewhere) go at the top of the first source module. In the kernel,
+    private functions do not require a prototype as long as they are defined
+    before they are used. In userspace, functions local to one source module
+    should be declared &#x2018;<code class="Li">static</code>&#x2019;. This
+    should not be done in the kernel since it makes it impossible to use the
+    kernel debugger.</p>
+<p class="Pp">Functions used from other files are prototyped in the relevant
+    include file.</p>
+<p class="Pp">Functions that are used locally in more than one module go into a
+    separate header file, e.g., <span class="Pa">extern.h</span>.</p>
+<p class="Pp">Prototypes should not have variable names associated with the
+    types; i.e.,</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>void	function(int);</pre>
+</div>
+not:
+<div class="Bd Bd-indent Li">
+<pre>void	function(int a);</pre>
+</div>
+<p class="Pp">Prototypes may have an extra space after a tab to enable function
+    names to line up:</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>static char	*function(int, const char *);
+static void	 usage(void);</pre>
+</div>
+<p class="Pp">There should be no space between the function name and the
+    argument list.</p>
+<p class="Pp">Use <code class="Li">__dead</code> from
+    <code class="In">&lt;<a class="In">sys/cdefs.h</a>&gt;</code> for functions
+    that don't return, i.e.,</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>__dead void	abort(void);</pre>
+</div>
+<p class="Pp">In header files, put function prototypes within
+    <code class="Dv">__BEGIN_DECLS / __END_DECLS</code> matching pairs. This
+    makes the header file usable from C++.</p>
+<p class="Pp">Macros are capitalized and parenthesized, and should avoid
+    side-effects. If they are an inline expansion of a function, the function is
+    defined all in lowercase; the macro has the same name all in uppercase. If
+    the macro needs more than a single line, use braces. Right-justify the
+    backslashes, as the resulting definition is easier to read. If the macro
+    encapsulates a compound statement, enclose it in a
+    &#x201C;<code class="Li">do</code>&#x201D; loop, so that it can safely be
+    used in &#x201C;<code class="Li">if</code>&#x201D; statements. Any final
+    statement-terminating semicolon should be supplied by the macro invocation
+    rather than the macro, to make parsing easier for pretty-printers and
+    editors.</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>#define	MACRO(x, y) do {					\
+	variable = (x) + (y);					\
+	(y) += 2;						\
+} while (0)</pre>
+</div>
+<p class="Pp">If a macro with arguments declares local variables, those
+    variables should use identifiers beginning with two underscores. This is
+    required for macros implementing C and POSIX interfaces and recommended for
+    all macros for consistency.</p>
+<p class="Pp">Enumeration values are all uppercase.</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>enum enumtype { ONE, TWO } et;</pre>
+</div>
+<p class="Pp">When defining unsigned integers use &#x201C;unsigned int&#x201D;
+    rather than just &#x201C;unsigned&#x201D;; the latter has been a source of
+    confusion in the past.</p>
+<p class="Pp">When declaring variables in structures, declare them sorted by
+    use, then by size (largest to smallest), then by alphabetical order. The
+    first category normally doesn't apply, but there are exceptions. Each one
+    gets its own line. Put a tab after the first word, i.e., use
+    &#x2018;<code class="Li">int^Ix;</code>&#x2019; and
+    &#x2018;<code class="Li">struct^Ifoo *x;</code>&#x2019;.</p>
+<p class="Pp">Major structures should be declared at the top of the file in
+    which they are used, or in separate header files if they are used in
+    multiple source files. Use of the structures should be by separate
+    declarations and should be &#x201C;<code class="Li">extern</code>&#x201D; if
+    they are declared in a header file.</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>struct foo {
+	struct	foo *next;	/* List of active foo */
+	struct	mumble amumble;	/* Comment for mumble */
+	int	bar;
+};
+struct foo *foohead;		/* Head of global foo list */</pre>
+</div>
+<p class="Pp">Use <a class="Xr" href="/queue.3">queue(3)</a> macros rather than
+    rolling your own lists, whenever possible. Thus, the previous example would
+    be better written:</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>#include &lt;sys/queue.h&gt;
+struct	foo {
+	LIST_ENTRY(foo)	link;	/* Queue macro glue for foo lists */
+	struct	mumble amumble;	/* Comment for mumble */
+	int	bar;
+};
+LIST_HEAD(, foo) foohead;	/* Head of global foo list */</pre>
+</div>
+<p class="Pp">Avoid using typedefs for structure types. This makes it impossible
+    for applications to use pointers to such a structure opaquely, which is both
+    possible and beneficial when using an ordinary struct tag. When convention
+    requires a typedef, make its name match the struct tag. Avoid typedefs
+    ending in &#x201C;<code class="Li">_t</code>&#x201D;, except as specified in
+    Standard C or by POSIX.</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>/*
+ * All major routines should have a comment briefly describing what
+ * they do.  The comment before the &quot;main&quot; routine should describe
+ * what the program does.
+ */
+int
+main(int argc, char *argv[])
+{
+	int aflag, bflag, ch, num;
+	const char *errstr;</pre>
+</div>
+<p class="Pp">For consistency, <a class="Xr" href="/getopt.3">getopt(3)</a>
+    should be used to parse options. Options should be sorted in the
+    <a class="Xr" href="/getopt.3">getopt(3)</a> call and the switch statement,
+    unless parts of the switch cascade. Elements in a switch statement that
+    cascade should have a FALLTHROUGH comment. Numerical arguments should be
+    checked for accuracy.</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>while ((ch = getopt(argc, argv, &quot;abn:&quot;)) != -1) {
+	switch (ch) {		/* Indent the switch. */
+	case 'a':		/* Don't indent the case. */
+		aflag = 1;
+		/* FALLTHROUGH */
+	case 'b':
+		bflag = 1;
+		break;
+	case 'n':
+		num = strtonum(optarg, 0, INT_MAX, &amp;errstr);
+		if (errstr) {
+			warnx(&quot;number is %s: %s&quot;, errstr, optarg);
+			usage();
+		}
+		break;
+	default:
+		usage();
+	}
+}
+argc -= optind;
+argv += optind;</pre>
+</div>
+<p class="Pp">Use a space after keywords (<code class="Li">if</code>,
+    <code class="Li">while</code>, <code class="Li">for</code>,
+    <code class="Li">return</code>, <code class="Li">switch</code>). No braces
+    are used for control statements with zero or only a single statement unless
+    that statement is more than a single line, in which case they are
+  permitted.</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>for (p = buf; *p != '\0'; ++p)
+	continue;
+for (;;)
+	stmt;
+for (;;) {
+	z = a + really + long + statement + that + needs +
+	    two + lines + gets + indented + four + spaces +
+	    on + the + second + and + subsequent + lines;
+}
+for (;;) {
+	if (cond)
+		stmt;
+}</pre>
+</div>
+<p class="Pp">Parts of a for loop may be left empty.</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>for (; cnt &lt; 15; cnt++) {
+	stmt1;
+	stmt2;
+}</pre>
+</div>
+<p class="Pp">Indentation is an 8 character tab. Second level indents are four
+    spaces. All code should fit in 80 columns.</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>while (cnt &lt; 20)
+	z = a + really + long + statement + that + needs +
+	    two + lines + gets + indented + four + spaces +
+	    on + the + second + and + subsequent + lines;</pre>
+</div>
+<p class="Pp">Do not add whitespace at the end of a line, and only use tabs
+    followed by spaces to form the indentation. Do not use more spaces than a
+    tab will produce and do not use spaces in front of tabs.</p>
+<p class="Pp">Closing and opening braces go on the same line as the else. Braces
+    that aren't necessary may be left out, unless they cause a compiler
+  warning.</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>if (test)
+	stmt;
+else if (bar) {
+	stmt;
+	stmt;
+} else
+	stmt;</pre>
+</div>
+<p class="Pp">Do not use spaces after function names. Commas have a space after
+    them. Do not use spaces after &#x2018;(&#x2019; or &#x2018;[&#x2019; or
+    preceding &#x2018;]&#x2019; or &#x2018;)&#x2019; characters.</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>if ((error = function(a1, a2)))
+	exit(error);</pre>
+</div>
+<p class="Pp">Unary operators don't require spaces; binary operators do. Don't
+    use parentheses unless they're required for precedence, the statement is
+    confusing without them, or the compiler generates a warning without them.
+    Remember that other people may be confused more easily than you. Do YOU
+    understand the following?</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>a = b-&gt;c[0] + ~d == (e || f) || g &amp;&amp; h ? i : j &gt;&gt; 1;
+k = !(l &amp; FLAGS);</pre>
+</div>
+<p class="Pp">Exits should be 0 on success, or non-zero for errors.</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>/*
+ * Avoid obvious comments such as
+ * &quot;Exit 0 on success.&quot;
+ */
+exit(0);</pre>
+</div>
+<p class="Pp">The function type should be on a line by itself preceding the
+    function.</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>static char *
+function(int a1, int a2, float fl, int a4)
+{</pre>
+</div>
+<p class="Pp">When declaring variables in functions, declare them sorted by size
+    (largest to smallest), then in alphabetical order; multiple ones per line
+    are okay. If a line overflows, reuse the type keyword.</p>
+<p class="Pp">Be careful not to obfuscate the code by initializing variables in
+    the declarations. Use this feature only thoughtfully. DO NOT use function
+    calls in initializers!</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>struct foo one, *two;
+double three;
+int *four, five;
+char *six, seven, eight, nine, ten, eleven, twelve;
+
+four = myfunction();</pre>
+</div>
+<p class="Pp">Do not declare functions inside other functions.</p>
+<p class="Pp" id="sizeof">Casts and
+    <a class="permalink" href="#sizeof"><code class="Fn">sizeof</code></a>()
+    calls are not followed by a space. Note that
+    <a class="Xr" href="/indent.1">indent(1)</a> does not understand this
+  rule.</p>
+<p class="Pp">Use of the &#x201C;register&#x201D; specifier is discouraged in
+    new code. Optimizing compilers such as gcc can generally do a better job of
+    choosing which variables to place in registers to improve code performance.
+    The exception to this is in functions containing assembly code where the
+    &#x201C;register&#x201D; specifier is required for proper code generation in
+    the absence of compiler optimization.</p>
+<p class="Pp" id="longjmp">When using
+    <a class="permalink" href="#longjmp"><code class="Fn">longjmp</code></a>()
+    or
+    <a class="permalink" href="#vfork"><code class="Fn" id="vfork">vfork</code></a>()
+    in a program, the <code class="Fl">-W</code> or
+    <code class="Fl">-Wall</code> flag should be used to verify that the
+    compiler does not generate warnings such as</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>warning: variable `foo' might be clobbered by `longjmp' or `vfork'.</pre>
+</div>
+<p class="Pp">If any warnings of this type occur, you must apply the
+    &#x201C;volatile&#x201D; type-qualifier to the variable in question. Failure
+    to do so may result in improper code generation when optimization is
+    enabled. Note that for pointers, the location of &#x201C;volatile&#x201D;
+    specifies if the type-qualifier applies to the pointer, or the thing being
+    pointed to. A volatile pointer is declared with &#x201C;volatile&#x201D; to
+    the right of the &#x201C;*&#x201D;. Example:</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>char *volatile foo;</pre>
+</div>
+<p class="Pp">says that &#x201C;foo&#x201D; is volatile, but
+    &#x201C;*foo&#x201D; is not. To make &#x201C;*foo&#x201D; volatile use the
+    syntax</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>volatile char *foo;</pre>
+</div>
+<p class="Pp">If both the pointer and the thing pointed to are volatile use</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>volatile char *volatile foo;</pre>
+</div>
+<p class="Pp">&#x201C;const&#x201D; is also a type-qualifier and the same rules
+    apply. The description of a read-only hardware register might look something
+    like:</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>const volatile char *reg;</pre>
+</div>
+<p class="Pp">Global flags set inside signal handlers should be of type
+    &#x201C;volatile sig_atomic_t&#x201D; if possible. This guarantees that the
+    variable may be accessed as an atomic entity, even when a signal has been
+    delivered. Global variables of other types (such as structures) are not
+    guaranteed to have consistent values when accessed via a signal handler.</p>
+<p class="Pp"><code class="Dv">NULL</code> is the preferred null pointer
+    constant. Use <code class="Dv">NULL</code> instead of (type&#x00A0;*)0 or
+    (type&#x00A0;*)NULL in all cases except for arguments to variadic functions
+    where the compiler does not know the type.</p>
+<p class="Pp">Don't use &#x2018;<code class="Li">!</code>&#x2019; for tests
+    unless it's a boolean, i.e., use</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>if (*p == '\0')</pre>
+</div>
+not
+<div class="Bd Bd-indent Li">
+<pre>if (!*p)</pre>
+</div>
+<p class="Pp">Routines returning <code class="Li">void *</code> should not have
+    their return values cast to any pointer type.</p>
+<p class="Pp">Use the <a class="Xr" href="/err.3">err(3)</a> and
+    <a class="Xr" href="/warn.3">warn(3)</a> family of functions. Don't roll
+    your own!</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>if ((four = malloc(sizeof(struct foo))) == NULL)
+	err(1, NULL);
+if ((six = (int *)overflow()) == NULL)
+	errx(1, &quot;Number overflowed.&quot;);
+return eight;</pre>
+</div>
+<p class="Pp">Always use ANSI function definitions. Long parameter lists are
+    wrapped with a normal four space indent.</p>
+<p class="Pp">Variable numbers of arguments should look like this:</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>#include &lt;stdarg.h&gt;
+
+void
+vaf(const char *fmt, ...)
+{
+	va_list ap;
+	va_start(ap, fmt);
+
+	STUFF;
+
+	va_end(ap);
+
+	/* No return needed for void functions. */
+}
+
+static void
+usage(void)
+{</pre>
+</div>
+<p class="Pp">Usage statements should take the same form as the synopsis in
+    manual pages. Options without operands come first, in alphabetical order
+    inside a single set of braces, followed by options with operands, in
+    alphabetical order, each in braces, followed by required arguments in the
+    order they are specified, followed by optional arguments in the order they
+    are specified.</p>
+<p class="Pp">A bar (&#x2018;|&#x2019;) separates either-or options/arguments,
+    and multiple options/arguments which are specified together are placed in a
+    single set of braces.</p>
+<p class="Pp">If numbers are used as options, they should be placed first, as
+    shown in the example below. Uppercase letters take precedence over
+    lowercase.</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>&quot;usage: f [-12aDde] [-b b_arg] [-m m_arg] req1 req2 [opt1 [opt2]]\n&quot;
+&quot;usage: f [-a | -b] [-c [-de] [-n number]]\n&quot;</pre>
+</div>
+<p class="Pp">The <a class="Xr" href="/getprogname.3">getprogname(3)</a>
+    function may be used instead of hard-coding the program name.</p>
+<div class="Bd Pp Bd-indent Li">
+<pre>fprintf(stderr, &quot;usage: %s [-ab]\n&quot;, getprogname());
+exit(1);</pre>
+</div>
+<p class="Pp">New core kernel code should be reasonably compliant with the style
+    guides. The guidelines for third-party maintained modules and device drivers
+    are more relaxed but at a minimum should be internally consistent with their
+    style.</p>
+<p class="Pp">Whenever possible, code should be run through a code checker
+    (e.g., &#x201C;<code class="Li">gcc -Wall -W -Wpointer-arith
+    -Wbad-function-cast ...</code>&#x201D; or splint from the ports tree) and
+    produce minimal warnings. Since lint has been removed, the only lint-style
+    comment that should be used is FALLTHROUGH, as it's useful to humans. Other
+    lint-style comments such as ARGSUSED, LINTED, and NOTREACHED may be
+  deleted.</p>
+<p class="Pp">Note that documentation follows its own style guide, as documented
+    in <a class="Xr" href="/mdoc.7">mdoc(7)</a>.</p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="FILES"><a class="permalink" href="#FILES">FILES</a></h1>
+<dl class="Bl-tag Bl-compact">
+  <dt><span class="Pa">/usr/share/misc/license.template</span></dt>
+  <dd>Example license for new code.</dd>
+</dl>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
+  ALSO</a></h1>
+<p class="Pp"><a class="Xr" href="/indent.1">indent(1)</a>,
+    <a class="Xr" href="/err.3">err(3)</a>,
+    <a class="Xr" href="/queue.3">queue(3)</a>,
+    <a class="Xr" href="/warn.3">warn(3)</a>,
+    <a class="Xr" href="/mdoc.7">mdoc(7)</a></p>
+</section>
+<section class="Sh">
+<h1 class="Sh" id="HISTORY"><a class="permalink" href="#HISTORY">HISTORY</a></h1>
+<p class="Pp">This man page is largely based on the src/admin/style/style file
+    from the <span class="Ux">4.4BSD-Lite2</span> release, with updates to
+    reflect the current practice and desire of the
+    <span class="Ux">OpenBSD</span> project.</p>
+</section>
+</div>
+<table class="foot">
+  <tr>
+    <td class="foot-date">January 22, 2021</td>
+    <td class="foot-os">OpenBSD-current</td>
+  </tr>
+</table>
+</body>
+</html>
