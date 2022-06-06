@@ -1,0 +1,11 @@
+# Enterprise tools for backups
+
+1. Veeam
+2. CommVault
+
+# Configuration management tools
+
+1. Ansible
+2. Puppet
+
+Manage LVM2 configuration

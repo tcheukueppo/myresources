@@ -1,0 +1,157 @@
+Simple git guide for CVS users by sin
+=====================================
+
+0x0. Set up your user name + email.
+-----------------------------------
+
+  $ git config --global user.name "you"
+  $ git config --global user.email "you@yourserver.org"
+  $ git config --global push.default simple
+
+This will create ~/.gitconfig.
+
+0x1. Centralized workflow - basic notions
+-----------------------------------------
+
+Git avoids  touching the network as  much as possible.  The  few basic
+commands that require network access are as shown below.
+
+  * git-clone(1) # clone a repo for the first time
+  * git-push(1)  # push your branch
+  * git-pull(1)  # fetch compressed deltas and merge into current branch
+
+In git you  can have tracked and  untracked files.  In git  you have 3
+types of  changes.  If you modify  a tracked file you  have `modified'
+the file.  When  you do `git add <file>' you  stage the file.  Finally
+with `git commit' you commit your change into your local branch.
+
+Staging is  important if you have  modified one or many  files and you
+want to  select a subset  of those changes  to commit.  This  makes it
+easy to break down your patches  and organize them as needed.  Ideally
+each patch is  useful on its own and unrelated  changes are grouped in
+separate  patches.  For  more  information  look at  the  -p flag  for
+git-add(1).
+
+For more advanced  operations you should *always* know  what state git
+is in.   You can  query that  with git-status(1).  If  you are  in the
+middle of a  merge and you forgot about it,  git-status(1) will remind
+you.  Use git-status(1) frequently.
+
+0x2. Centralized git workflow
+-----------------------------
+
+To clone a repo:
+
+  $ git clone you@yourserver.org:myrepo.git
+
+To update your repo:
+
+  $ git pull
+
+  If you have local changes  the fetch/merge will proceed as expected.
+  You can  retain your local changes  even if they are  not committed.
+  If you have a merge conflict,  resolve it by hand and use git-add(1)
+  and git-commit(1).  The  history will continue to be  linear in case
+  of a fast-forward merge.
+
+To look at the commit history and the contents of each patch:
+
+  $ git log -p
+
+To commit your changes:
+
+  $ git commit -am 'Initial import'
+
+  This will  add all modified/deleted  files and commit  them locally.
+  New files are not added.  To add new files/directories:
+
+  $ git add <file|dir>
+  $ git commit -m 'awesome'
+
+To push your changes to the remote branch:
+
+  $ git push
+
+To push a specific branch:
+
+  $ git push origin mybranch
+
+To show a diff between your modified files and the HEAD commit in your branch:
+
+  $ git diff
+
+To show the staged changes (the changes to be committed upon git-commit(1)):
+
+  $ git diff --cached
+
+To unstage changes:
+
+  $ git reset <file|dir>
+
+To remove a tracked file/dir:
+
+  $ git rm -r <file|dir>
+
+  This will also stage the change.  You can just git-commit(1) at this point.
+
+To rename a tracked file/dir:
+
+  $ git mv <src> <dst>
+
+  This will also stage the change.  You can just git-commit(1) at this point.
+
+To revert a modified file/dir to whatever is in HEAD:
+
+  $ git checkout <file|dir>
+
+To change the contents of your last commit:
+
+  $ # change files
+  $ git add <files>
+  $ git commit --amend
+
+To generate git patch files:
+
+  $ git format-patch -1
+
+  This will generate the patch file for the last commit.  You
+  can use git format-patch -<n> for the last `n' commits.
+
+To apply a git patch file:
+
+  $ git am mypatch.patch
+
+To the see the failed patch:
+
+  $ git am --show-current-patch=diff
+
+Continue after fixing conflicts
+
+  $ git am --continue
+
+For a simple workflow you can avoid using the staging area completely.
+Just use the -am option for  git-commit(1) so you can stage and commit
+everything in one step.
+
+0x3. Set up a server-side bare repo for your project
+----------------------------------------------------
+
+To create a new repo in your home directory:
+
+  $ cd
+  $ cp -r /tmp/myproject myrepo
+  $ cd myrepo
+  $ git init
+  Initialized empty Git repository in /home/you/myrepo/.git/
+  $ git add *
+  $ git commit -m 'Initial import'
+  $ cd
+  $ # We do not need an unpacked repo, just a bare one
+  $ # no need to waste disk space
+  $ git clone --bare myrepo myrepo.git
+  $ rm -rf myrepo
+
+Assuming your  ssh-keys are in  place, you can now  clone `myrepo.git'
+just by doing:
+
+  $ git clone you@yourserver.org:myrepo.git

@@ -1,0 +1,7 @@
+- [Terminal emulator](https://en.wikipedia.org/wiki/Terminal_emulator)
+- [Curses](https://en.wikipedia.org/wiki/Curses_(programming_library))
+- [Terminfo](https://en.wikipedia.org/wiki/Terminfo)
+- [Terminal Capabilities](https://en.wikipedia.org/wiki/Terminal_capabilities) 
+- [ANSI escape code](https://en.wikipedia.org/wiki/ANSI_escape_code)
+- [ANSI Xterm](https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h2-Definitions)
+- 
