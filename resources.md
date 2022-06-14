@@ -74,6 +74,7 @@
 # Learn git
 
 - https://jwiegley.github.io/git-from-the-bottom-up/
+- https://git-scm.com/book/en/v2
 
 # Language Theory
 
